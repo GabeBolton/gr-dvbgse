@@ -350,7 +350,7 @@ namespace gr {
         throw std::runtime_error("Error calling pcap_set_buffer_size()\n");
       }
       if (pcap_activate(descr) != 0) {
-        std::string error_code = std::to_string(pcap_activate(descr));
+        std::string error_code = std::to_string(pcap_strerror(pcap_activate(descr)));
         pcap_close(descr);
         throw std::runtime_error((std::string("Error calling pcap_activate(); pcap error code: ") \
           + error_code + std::string("\n")).c_str());
