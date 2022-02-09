@@ -351,7 +351,8 @@ namespace gr {
       }
       if (pcap_activate(descr) != 0) {
         int error_code = pcap_activate(descr)
-        std::string error_code_str = pcap_strerror(pcap_activate(descr));
+        std::string error_code_str = std::to_string(error_code);
+        std::string error_code_msg = pcap_strerror(pcap_activate(descr));
         pcap_close(descr);
         throw std::runtime_error((std::string("Error calling pcap_activate()") \
           + std::string("\npcap error code: ") + error_code_str \
